@@ -1,17 +1,51 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <to-do-list v-bind:todos="todos"></to-do-list>
+    <create-to-do v-on:create-todo="addToDo"></create-to-do>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import ToDoList from './components/ToDoList/'
+import CreateToDo from './components/ToDoList/CreateToDo'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ToDoList,
+    CreateToDo
+  },
+  data () {
+    return {
+      todos: [
+        {
+          title: 'Todo A',
+          project: 'Project A',
+          done: false
+        },
+        {
+          title: 'Todo B',
+          project: 'Project B',
+          done: true
+        },
+        {
+          title: 'Todo C',
+          project: 'Project C',
+          done: false
+        },
+        {
+          title: 'Todo D',
+          project: 'Project D',
+          done: false
+        }
+      ]
+
+    }
+  },
+  methods: {
+    addToDo (toDoItem) {
+      this.todos.push(toDoItem)
+    }
   }
 }
 </script>
